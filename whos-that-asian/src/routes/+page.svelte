@@ -2,28 +2,28 @@
 	let  avatar, fileinput;
 	
 	const onFileSelected =(e)=>{
-  let image = e.target.files[0];
+    let image = e.target.files[0];
             let reader = new FileReader();
             reader.readAsDataURL(image);
             reader.onload = e => {
                  avatar = e.target.result
             };
-}
-	
+    }
 </script>
+
 <div id="app">
-	<h1>Upload Image</h1>
-  
+	<h1>Upload Image</h1>  
         {#if avatar}
         <img class="avatar" src="{avatar}" alt="d" />
+        <p>Result: Something</p>
         {:else}
         <img class="avatar" src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png" alt="" /> 
+        <p>Result: None</p>
         {/if}
 				<img class="upload" src="https://static.thenounproject.com/png/625182-200.png" alt="" on:click={()=>{fileinput.click();}} />
-        <div class="chan" on:click={()=>{fileinput.click();}}>Choose Image</div>
         <input style="display:none" type="file" accept=".jpg, .jpeg, .png" on:change={(e)=>onFileSelected(e)} bind:this={fileinput} >
-
 </div>
+
 <style>
 	#app{
 	display:flex;
