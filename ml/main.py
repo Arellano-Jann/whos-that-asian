@@ -71,10 +71,10 @@ class FaceRecognition:
             face_names.append(name)
             
             for (top, right, bottom, left), name in zip(face_locations, face_names):
-                cv2.rectangle(img, (left-20, top-20), (right+20, bottom+20), (255,0,0),2)
-                cv2.rectangle(img, (left-20,bottom-15), (right+20, bottom+20), (255,0,0), cv2.FILLED)
+                cv2.rectangle(img, (left-20, top-20), (right+20, bottom+20), (0,255,0),2)
+                cv2.rectangle(img, (left-20,bottom-15), (right+20, bottom+20), (0,255,0), cv2.FILLED)
                 
-                cv2.putText(img, name, (left - 20, bottom + 15), cv2.FONT_HERSHEY_DUPLEX, 1.0, (255,255,255), 2)
+                cv2.putText(img, name, (left - 20, bottom + 15), cv2.FONT_HERSHEY_COMPLEX, 1.0, (255,255,255), 2)
             
         while True:
             cv2.imshow('Video', img)
