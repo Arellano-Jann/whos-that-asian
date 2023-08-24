@@ -144,5 +144,6 @@ class FaceRecognition:
                 
                 
 # if __name__ == '__main__':
-fr= FaceRecognition()
-fr.run_recognition("test4.jpg")
+def main(image):
+    fr = FaceRecognition()
+    fr.run_recognition(image)
