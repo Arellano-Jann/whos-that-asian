@@ -76,8 +76,10 @@ class FaceRecognition:
                 
                 cv2.putText(img, name, (left - 20, bottom + 15), cv2.FONT_HERSHEY_COMPLEX, 1.0, (255,255,255), 2)
             
+        cv2.imwrite(os.path.join("..", "output.jpg"), img)
+            
         while True:
-            cv2.imshow('Video', img)
+            cv2.imshow('Image', img)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 return face_names
             
@@ -143,7 +145,10 @@ class FaceRecognition:
                 
                 
                 
-# if __name__ == '__main__':
-def main(image):
+if __name__ == '__main__':
     fr = FaceRecognition()
-    fr.run_recognition(image)
+    fr.run_recognition("test.jpg")
+
+# def main(image):
+#     fr = FaceRecognition()
+#     fr.run_recognition(image)
