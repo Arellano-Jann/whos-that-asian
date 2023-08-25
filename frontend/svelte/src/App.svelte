@@ -12,6 +12,7 @@
 				avatar = e.target.result
 		};	
 		formData.append('face', avatar);
+		postFace();
     }
 
 	function postFace() {

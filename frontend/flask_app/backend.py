@@ -25,6 +25,7 @@ def base():
 def predict():
     faceName = "flask_on_change"
     face = request.files.get('face')
+    return "predict_test"
     return FaceRecognition("test.jpg")
 
 
