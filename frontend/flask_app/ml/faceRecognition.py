@@ -145,10 +145,10 @@ class FaceRecognition:
                 
                 
                 
-if __name__ == '__main__':
-    fr = FaceRecognition()
-    fr.run_recognition("test.jpg")
-
-# def main(image):
+# if __name__ == '__main__':
 #     fr = FaceRecognition()
-#     fr.run_recognition(image)
+#     fr.run_recognition("test.jpg")
+
+def main(image):
+    fr = FaceRecognition()
+    fr.run_recognition(image)
