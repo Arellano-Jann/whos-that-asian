@@ -1,6 +1,8 @@
 <script>
 	let  avatar, fileinput, faceName;
 	faceName = "svelte";
+
+	const formData = new FormData();
 	
 	const onFileSelected = (e) => {
     	let image = e.target.files[0];
@@ -8,13 +10,30 @@
 		reader.readAsDataURL(image);
 		reader.onload = e => {
 				avatar = e.target.result
-		};
+		};	
+		formData.append('face', avatar);
     }
+
+	function postFace() {
+		fetch("http://127.0.0.1:5000/predict", {
+			method: 'POST',
+			body: formData
+		})
+			// .then(response => response.text())
+			.then(response => {
+				console.log(response)
+				return response.text();
+			})
+			.then(data => {
+				console.log(data);
+				faceName = data;
+			})
+			.catch(error => console.error('Error:', error));
+	}
 	
 	function getFaceName() {
 		fetch("http://127.0.0.1:5000/")
 			.then(response => {
-				console.log(response);
 				return response.text();
 			})
 			.then(data => {

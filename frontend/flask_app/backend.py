@@ -23,6 +23,7 @@ def base():
 
 @app.route("/predict", methods=['POST'])
 def predict():
+    faceName = "flask_on_change"
     face = request.files.get('face')
     return FaceRecognition("test.jpg")
 
