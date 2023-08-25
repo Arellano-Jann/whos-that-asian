@@ -5,6 +5,9 @@ cd whos-that-asian
 npm install
 npm run dev
 
+pip install flask
+pip install flask-cors
+
 # For raw facial recognition
 
 pip install dlib

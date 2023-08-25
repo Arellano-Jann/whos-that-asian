@@ -1,8 +1,10 @@
 from flask import Flask, request
 from ml.faceRecognition import main as FaceRecognition
+from flask_cors import CORS
 
 app = Flask(__name__)
-faceName = "Unknown"
+CORS(app)
+faceName = "flask"
 
 # Path for our main Svelte page
 @app.route("/")

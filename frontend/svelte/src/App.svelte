@@ -1,6 +1,6 @@
 <script>
 	let  avatar, fileinput, faceName;
-	faceName = "something";
+	faceName = "svelte";
 	
 	const onFileSelected = (e) => {
     	let image = e.target.files[0];
@@ -13,11 +13,15 @@
 	
 	function getFaceName() {
 		fetch("http://127.0.0.1:5000/")
-			.then(response => response.json())
+			.then(response => {
+				console.log(response);
+				return response.text();
+			})
 			.then(data => {
 				console.log(data);
 				faceName = data;
-			});
+			})
+			.catch(error => console.error('Error:', error));
 	}
 
 	$: {
