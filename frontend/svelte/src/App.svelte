@@ -1,6 +1,6 @@
 <script>
 	let  avatar, fileinput, faceName;
-	faceName = "svelte";
+	faceName = "Loading...";
 	
 	const formData = new FormData();
 	
@@ -49,17 +49,17 @@
 			.catch(error => console.error('Error:', error));
 	}
 	
-	function getFaceName() {
-		fetch("http://127.0.0.1:5000/")
-			.then(response => {
-				return response.text();
-			})
-			.then(data => {
-				console.log(data);
-				faceName = data;
-			})
-			.catch(error => console.error('Error:', error));
-	}
+	// function getFaceName() {
+	// 	fetch("http://127.0.0.1:5000/")
+	// 		.then(response => {
+	// 			return response.text();
+	// 		})
+	// 		.then(data => {
+	// 			console.log(data);
+	// 			faceName = data;
+	// 		})
+	// 		.catch(error => console.error('Error:', error));
+	// }
 
 	// $: {
 	// 	if (avatar) {
