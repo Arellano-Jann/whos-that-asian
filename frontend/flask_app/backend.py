@@ -1,5 +1,5 @@
-from flask import Flask, request
-from ml.faceRecognition import main as FaceRecognition
+from flask import Flask, request, send_file
+from faceRecognition import main as faceRecognition
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -9,6 +9,7 @@ faceName = "flask"
 # Path for our main Svelte page
 @app.route("/")
 def base():
+    # print("flask_print_base")
     return faceName
 
 # # Path for all the static files (compiled JS/CSS, etc.)
@@ -21,12 +22,14 @@ def base():
 # def hello():
 #     return str(random.randint(0, 100))
 
-@app.route("/predict", methods=['POST'])
+@app.route("/predict", methods=['GET', 'POST'])
 def predict():
     faceName = "flask_on_change"
+    print("flask_print_predict")
     face = request.files.get('face')
-    return "predict_test"
-    return FaceRecognition("test.jpg")
+    # return send_file(face, mimetype='image/jpeg')
+    # return "predict_test"
+    return faceRecognition("test4.jpg")
 
 
 if __name__ == "__main__":

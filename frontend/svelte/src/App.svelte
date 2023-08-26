@@ -1,19 +1,36 @@
 <script>
 	let  avatar, fileinput, faceName;
 	faceName = "svelte";
-
+	
 	const formData = new FormData();
 	
 	const onFileSelected = (e) => {
-    	let image = e.target.files[0];
+		let image = e.target.files[0];
 		let reader = new FileReader();
 		reader.readAsDataURL(image);
 		reader.onload = e => {
-				avatar = e.target.result
+			avatar = e.target.result
 		};	
 		formData.append('face', avatar);
 		postFace();
     }
+	
+	// let objectURL;
+	// function postFace() {
+	// 	fetch("http://127.0.0.1:5000/predict", {
+	// 		method: 'POST',
+	// 		body: formData
+	// 	})
+	// 		// .then(response => response.text())
+	// 		.then(response => {
+	// 			console.log(response)
+	// 			return response.blob();
+	// 		})
+	// 		.then(blob => {
+	// 			objectURL = URL.createObjectURL(blob);  // Create object URL from the blob
+	// 		})
+	// 		.catch(error => console.error('Error:', error));
+	// }
 
 	function postFace() {
 		fetch("http://127.0.0.1:5000/predict", {
@@ -44,17 +61,18 @@
 			.catch(error => console.error('Error:', error));
 	}
 
-	$: {
-		if (avatar) {
-			getFaceName();
-		}
-	}
+	// $: {
+	// 	if (avatar) {
+	// 		getFaceName();
+	// 	}
+	// }
 </script>
 
 <div id="app">
 	<h1>Upload Image</h1>  
         {#if avatar}
         <img class="avatar" src="{avatar}" alt="d" />
+		<!-- <img src="{objectURL}" alt="" />  -->
         <p>Result: {faceName}</p>
         {:else}
         <img class="avatar" src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png" alt="" /> 
