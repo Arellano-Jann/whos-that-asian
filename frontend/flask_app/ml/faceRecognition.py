@@ -55,8 +55,8 @@ class FaceRecognition:
         face_locations = face_recognition.face_locations(img)
         unknown_face_encodings = face_recognition.face_encodings(img, face_locations)
         
-        print(unknown_face_encodings)
-        print(face_locations)
+        # print(unknown_face_encodings)
+        # print(face_locations)
         
         face_names = []
         for face_encoding in unknown_face_encodings:
@@ -78,10 +78,12 @@ class FaceRecognition:
             
         cv2.imwrite(os.path.join("..", "output.jpg"), img)
             
-        while True:
-            cv2.imshow('Image', img)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                return face_names
+        # while True:
+        #     cv2.imshow('Image', img)
+        #     if cv2.waitKey(1) & 0xFF == ord('q'):
+        #         return face_names
+        
+        return face_names[0]
             
         
         
