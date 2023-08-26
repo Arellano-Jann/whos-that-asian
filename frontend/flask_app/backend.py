@@ -1,5 +1,5 @@
 from flask import Flask, request, send_file
-from faceRecognition import main as faceRecognition
+from faceRecognition import FaceRecognition
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -29,7 +29,8 @@ def predict():
     face = request.files.get('face')
     # return send_file(face, mimetype='image/jpeg')
     # return "predict_test"
-    return faceRecognition("test4.jpg")
+    fr = FaceRecognition()
+    return fr.run_recognition("test4.jpg")
 
 
 if __name__ == "__main__":
