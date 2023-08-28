@@ -2,16 +2,17 @@
 	let  avatar, fileinput, faceName;
 	faceName = "Loading...";
 	
-	const formData = new FormData();
+	let formData = new FormData();
 	
 	const onFileSelected = (e) => {
 		let image = e.target.files[0];
 		let reader = new FileReader();
 		reader.readAsDataURL(image);
 		reader.onload = e => {
-			avatar = e.target.result
+			avatar = e.target.result;
+			// formData['face'] = avatar;
 		};	
-		formData.append('face', avatar);
+		formData.append('image', avatar);
 		postFace();
     }
 	
@@ -35,15 +36,17 @@
 	function postFace() {
 		fetch("http://127.0.0.1:5000/predict", {
 			method: 'POST',
+			credentials: 'include', 
 			body: formData
 		})
 			// .then(response => response.text())
 			.then(response => {
-				console.log(response)
+				// console.log(response)
+				faceName = 'Loading..';
 				return response.text();
 			})
 			.then(data => {
-				console.log(data);
+				// console.log(data);
 				faceName = data;
 			})
 			.catch(error => console.error('Error:', error));
@@ -73,7 +76,7 @@
         {#if avatar}
         <img class="avatar" src="{avatar}" alt="d" />
 		<!-- <img src="{objectURL}" alt="" />  -->
-        <p>Result: {faceName}</p>
+        <h2>Result: {faceName}</h2>
         {:else}
         <img class="avatar" src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png" alt="" /> 
         <p>Result: None</p>

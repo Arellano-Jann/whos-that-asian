@@ -38,6 +38,15 @@ class FaceRecognition:
         faces_encoded  = list(faces.values())
         known_face_names = list(faces.keys())
         
+        # image_path = image  # Replace with the actual image path
+        output_path = "output.jpg"  # Specify the path to save the copied image
+
+        # with open(image_path, "rb") as image_file:
+        #     image_data = image_file.read()
+
+        with open(output_path, "wb") as output_file:
+            output_file.write(image)
+        
         img = cv2.imread(image, 1)
         # small_frame = cv2.resize(img, (0, 0), fx=0.25, fy=0.25)
         # rgb_small_frame = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
